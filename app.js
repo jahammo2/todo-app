@@ -59,7 +59,7 @@ var server = app.listen(process.env.PORT || 7000, function () {
   var host = server.address().address,
       port = server.address().port;
 
-  console.log('Feclass listening at http://%s:%s', host, port);
+  console.log('Listening at http://%s:%s', host, port);
 });
 
 
