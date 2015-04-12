@@ -55,4 +55,22 @@ app.post('/api/tasks',function(req,res){
     controlDatabase(req,res,"INSERT INTO tasks (title) VALUES ('" + req.body.title + "')");
 });
 
-app.listen(7000);
+var server = app.listen(process.env.PORT || 7000, function () {
+  var host = server.address().address,
+      port = server.address().port;
+
+  console.log('Feclass listening at http://%s:%s', host, port);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
