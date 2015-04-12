@@ -1,0 +1,32 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "an app that utilitize routing, templating, node, and sql",
+  "main": "app.js",
+  "scripts": {
+    "scss": "node-sass src/css/main.scss dist/main.css",
+    "js": "cp src/app.js dist/app.js && find src/** -type f -name '*.js' ! -name 'app.js' ! -name 'init.js' -print0 | sort -z | xargs -0 cat -- >>dist/app.js && cat src/init.js >> dist/app.js",
+    "watch:scss": "onchange 'src/**/*.scss' -- npm run scss",
+    "watch:js": "onchange 'src/**/*.js' -- npm run js",
+    "watch": "npm run scss && npm run js && npm run watch:scss & npm run watch:js & node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jahammo2/todo-app.git"
+  },
+  "author": "jahammo2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jahammo2/todo-app/issues"
+  },
+  "homepage": "https://github.com/jahammo2/todo-app",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "express": "^4.12.3",
+    "mysql": "^2.5.4"
+  },
+  "devDependencies": {
+    "node-sass": "^2.1.1",
+    "onchange": "^1.1.0"
+  }
+}
