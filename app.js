@@ -1,19 +1,58 @@
-// how we require modules
-var http = require('http')
-// how we include libraries in node
+var mysql = require('mysql');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
 
-// we then create a server that takes a callback
-http.createServer(function (request,response) {
-// the request is the first argument in the createServer function
-// both request and response are callbacks
-  // means you're writing a 200 status code in the header
-  response.writeHead(200);
-  // means you're writing hello this is dog in the body
-  response.write('hello this is dog');
-  // end the response
-  response.end();
-// listen for connections on port 8080
-}).listen(8080);
+var pool = mysql.createPool({
+    connectionLimit : 100, //important
+    host     : 'localhost',
+    user     : 'root',
+    database : 'nodePractice',
+    debug    :  false
+});
 
-// to ensure our server is running, console.log this
-console.log('listening on port 8080');
+app.use(bodyParser.json());
+// Specify src as the space where public files are found
+app.use('/', express.static(__dirname + '/src'));
+// Add in the line below to bring in your dist folder too
+app.use('/dist', express.static(__dirname + '/dist'));
+
+var task = {};
+
+function controlDatabase(req,res,quereazy) {
+
+  console.log('trying');
+    
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({"code" : 100, "status" : "Error in connection database"});
+          return;
+        }   
+
+        console.log('connected as id ' + connection.threadId);
+        
+        connection.query(quereazy,function(err,rows){
+            connection.release();
+            if(!err) {
+            		console.log(rows);
+                res.json(rows);
+            }           
+        });
+
+        connection.on('error', function(err) {      
+              res.json({"code" : 100, "status" : "Error in connection database"});
+              return;     
+        });
+  });
+};
+
+app.get('/api/tasks', function(req,res){
+    controlDatabase(req,res,"select * from tasks");
+});
+
+app.post('/api/tasks',function(req,res){
+    controlDatabase(req,res,"INSERT INTO tasks (title) VALUES ('" + req.body.title + "')");
+});
+
+app.listen(7000);
