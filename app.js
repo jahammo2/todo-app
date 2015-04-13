@@ -19,9 +19,7 @@ app.use('/dist', express.static(__dirname + '/dist'));
 
 var task = {};
 
-function controlDatabase(req,res,quereazy) {
-
-  console.log('trying');
+function controlDatabase(req,res,query) {
     
     pool.getConnection(function(err,connection){
         if (err) {
@@ -31,8 +29,8 @@ function controlDatabase(req,res,quereazy) {
         }   
 
         console.log('connected as id ' + connection.threadId);
-        
-        connection.query(quereazy,function(err,rows){
+
+        connection.query(query,function(err,rows){
             connection.release();
             if(!err) {
             		console.log(rows);
@@ -48,11 +46,23 @@ function controlDatabase(req,res,quereazy) {
 };
 
 app.get('/api/tasks', function(req,res){
-    controlDatabase(req,res,"select * from tasks");
+    controlDatabase(req,res,"SELECT * FROM tasks ORDER BY task_id DESC");
+});
+
+app.get('/api/tasks/:id', function(req,res){
+    controlDatabase(req,res,"SELECT * FROM tasks WHERE task_id='" + req.params.id + "'");
 });
 
 app.post('/api/tasks',function(req,res){
-    controlDatabase(req,res,"INSERT INTO tasks (title) VALUES ('" + req.body.title + "')");
+  controlDatabase(req,res,"INSERT INTO tasks (title, status) VALUES ('" + req.body.title + "', 0)");
+});
+
+app.post('/api/tasks/:id/:status',function(req,res){
+    controlDatabase(req,res,"UPDATE tasks SET status='" + req.params.status + "' WHERE task_id='" + req.params.id + "'");
+});
+
+app.delete('/api/tasks/:id',function(req,res){
+    controlDatabase(req,res,"DELETE FROM tasks WHERE task_id='" + req.params.id + "'");
 });
 
 var server = app.listen(process.env.PORT || 7000, function () {

@@ -1,11 +1,23 @@
+/////////////////////////////////////////////////////////////
+// GENERAL
+/////////////////////////////////////////////////////////////
+
 html,
 body {
 	width: 100%;
 	height: 100%;
+	font-family: 'Montserrat', helvetica; 
 }
 
 .root-content {
 	height: 100%;
 	width: 100%;
-	background: lightyellow; 
+	margin: 0 auto;
+}
+
+.flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }

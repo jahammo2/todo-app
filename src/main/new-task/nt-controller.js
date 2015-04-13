@@ -1,13 +1,7 @@
-app.controller('NtCtrl', ['taskService', function (taskService) {
+app.controller('NtCtrl', ['tasks', 'taskService', function (tasks, taskService) {
+	console.log('workinfasg');
+
 	var self = this;
 
-	self.task = {
-		'title': 'get wine'
-	};
-	
-	self.newTask = function () {
-		console.log('yes');
-		taskService.addTask(self.task);
-	}
 }]);
 

@@ -1,0 +1,134 @@
+/////////////////////////////////////////////////////////////
+// HEADER
+/////////////////////////////////////////////////////////////
+
+.header-div {
+	width: 90%;
+	height: 30px;
+	background: $alt-color; 
+	position: fixed;
+	padding: 16px 5%;
+	font-size: 30px; 
+	color: black;
+	box-shadow: 0px 3px 2px $darkest-gray;
+	p {
+		font-size: 22px;
+		margin-top: 4px;
+		margin-left: 10px;   
+	}
+	div,
+	i {
+		&:hover {
+			color: black;
+			cursor: pointer; 
+		}
+	}
+}
+
+/////////////////////////////////////////////////////////////
+// TASKS
+/////////////////////////////////////////////////////////////
+
+.tasks-li {
+	width: 90%;
+	background: $lightest-gray; 
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin: 13px 0 24px;
+	padding: 18px 5%;
+	font-size: 24px;
+	border-radius: 5px;   
+	color: $base-color; 
+	box-shadow: 0px 2px 1px $darkest-gray;
+	h1 {
+		width: 54%;
+		text-align: left;
+		overflow: scroll;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	div {
+		&:hover {
+			cursor: pointer;
+			color: $darkest-gray; 
+		}
+	}
+	&:hover {
+		cursor: pointer;
+	}
+	label {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
+
+.list-div {
+	margin: 0 auto;
+	width: 90%;
+	padding-top: 74px; 
+}
+
+.checkbox-label {
+	z-index: 100;
+	i.fa {
+		z-index: 100; 
+	} 
+}
+
+.checkbox-input {
+	visibility: hidden;
+	position: absolute;
+}
+
+.checkbox-input:checked {
+	&~ label,
+	&~ h1,
+	&~ div {
+		color: $darkest-gray;
+		text-decoration: line-through;
+		font-style: italic;	
+	}	
+}
+
+/////////////// NEW TASK /////////////////////////////////////
+
+.new-input {
+	margin: 15px 0 13px; 
+	border: 1px solid $alt-color;
+	border-radius: 5px;
+	width: 90%;
+	outline: none;
+	background: $lightest-gray; 
+	padding: 15px 4.75%;
+	font-size: 24px; 
+	&:focus {
+		padding: 15px 4.5%;
+		border: 2px solid $darkest-gray;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

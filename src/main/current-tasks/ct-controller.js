@@ -3,5 +3,6 @@ app.controller('CtCtrl', function () {
 
 	var self = this;
 
+	console.log('another');
 
 });
