@@ -2,12 +2,25 @@ var mysql = require('mysql');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var dotenv = require('dotenv');
+
+dotenv.load();
+
+console.log({
+    connectionLimit : 100, //important
+    host     : process.env.DB_HOST,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASSWORD,
+    database : process.env.DB_DATABASE,
+    debug    :  false
+});
 
 var pool = mysql.createPool({
     connectionLimit : 100, //important
-    host     : 'localhost',
-    user     : 'root',
-    database : 'nodePractice',
+    host     : process.env.DB_HOST,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASSWORD,
+    database : process.env.DB_DATABASE,
     debug    :  false
 });
 
