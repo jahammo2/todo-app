@@ -58,11 +58,11 @@
       });
     }
 
-app.get("/",function(req,res){-
-        get_database(req,res);
-});
+    app.get("/",function(req,res){-
+            get_database(req,res);
+    });
 
-app.listen(8080);
+    app.listen(8080);
 
 ##### bringing scss and js concat into project
 - npm install --save-dev node-sass
