@@ -1,3 +1,15 @@
+# ToDo App
+
+#### Technologies Used:
+
+- Node.js
+- MySQL
+- AngularJS
+- JavaScript
+- jQuery
+- HTML
+- CSS
+
 ### How I'm going through making this todo app using JavaScript, Node, and MySQL
 
 ##### initially in command line
@@ -72,6 +84,8 @@ app.listen(8080);
 - type into cmmand line: npm run watch:scss & npm run watch:js & node app.js
 - add this to scripts: "watch": "npm run scss && npm run js && npm run watch:scss & npm run watch:js & node app.js". 
 This will allow us to just type in npm run watch.
+
+##### I'll add the remaining steps at another time
 
 
 
