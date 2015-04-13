@@ -1,0 +1,12 @@
+<input ng-if="task.status === 0" class="checkbox-input" type="checkbox">
+<input ng-if="task.status === 1" class="checkbox-input" type="checkbox" checked>
+<label ng-show="task.status === 0" ng-click="vm.statusUpdate(task)" class="checkbox-label">
+	<i class="fa fa-square-o"></i>
+</label>
+<label ng-show="task.status === 1" ng-click="vm.statusUpdate(task)" class="checkbox-label">
+	<i class="fa fa-check-square-o"></i>
+</label>
+<h1 ng-click="vm.statusUpdate(task)">{{task.title}}</h1>
+<div class="trash-div" ng-click="vm.removeTask(task.task_id)">
+	<i class="fa fa-trash-o"></i>
+</div>

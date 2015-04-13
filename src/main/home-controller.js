@@ -13,6 +13,15 @@ app.controller('HomeCtrl', ['tasks', 'taskService',
             self.showNew = true;
         }
 
+        self.showMenu = function () {
+            var checkbox = $(event.target).parent().parent().parent().parent().parent().find('.home-checkbox');
+            if (checkbox.prop('checked')) {
+                checkbox.prop('checked', false);
+            } else {
+                checkbox.prop('checked', true);
+            }
+        }
+
         self.newTask = function() {
             taskService.addTask(self.task);
             self.tasks.push({
@@ -52,6 +61,34 @@ app.controller('HomeCtrl', ['tasks', 'taskService',
             }
             taskService.updateTask(task.task_id, num);
             checkbox = undefined;
+        }
+
+        self.allTasks = true;
+        self.currentTasks = false;
+        self.completedTasks = false;
+
+        self.all = function () {
+            var checkbox = $(event.target).parent().parent().parent().parent().find('.home-checkbox');
+            checkbox.prop('checked', false);
+            self.allTasks = true;
+            self.currentTasks = false;
+            self.completedTasks = false; 
+        }
+
+        self.current = function () {
+            var checkbox = $(event.target).parent().parent().parent().parent().find('.home-checkbox');
+            checkbox.prop('checked', false);
+            self.allTasks = false;
+            self.currentTasks = true;
+            self.completedTasks = false; 
+        }
+
+        self.completed = function () {
+            var checkbox = $(event.target).parent().parent().parent().parent().find('.home-checkbox');
+            checkbox.prop('checked', false);
+            self.allTasks = false;
+            self.currentTasks = false;
+            self.completedTasks = true; 
         }
 
     }

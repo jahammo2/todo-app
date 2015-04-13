@@ -6,15 +6,6 @@ var dotenv = require('dotenv');
 
 dotenv.load();
 
-console.log({
-    connectionLimit : 100, //important
-    host     : process.env.DB_HOST,
-    user     : process.env.DB_USER,
-    password : process.env.DB_PASSWORD,
-    database : process.env.DB_DATABASE,
-    debug    :  false
-});
-
 var pool = mysql.createPool({
     connectionLimit : 100, //important
     host     : process.env.DB_HOST,
@@ -51,11 +42,7 @@ function controlDatabase(req,res,query) {
                 res.json(rows);
             }           
         });
-
-        connection.on('error', function(err) {      
-              res.json({"code" : 100, "status" : "Error in connection database"});
-              return;     
-        });
+        
   });
 };
 
