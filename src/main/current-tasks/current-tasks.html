@@ -1,16 +1,11 @@
 <ul>
-	<li class="tasks-li" ng-repeat="task in vm.tasks | orderBy:'-task_id'">
-		<input ng-if="task.status === 0" class="checkbox-input" type="checkbox">
-		<input ng-if="task.status === 1" class="checkbox-input" type="checkbox" checked>
-		<label ng-show="task.status === 0" ng-click="vm.statusUpdate(task)" class="checkbox-label">
-			<i class="fa fa-square-o"></i>
-		</label>
-		<label ng-show="task.status === 1" ng-click="vm.statusUpdate(task)" class="checkbox-label">
-			<i class="fa fa-check-square-o"></i>
-		</label>
-		<h1 ng-click="vm.statusUpdate(task)">{{task.title}}</h1>
-		<div ng-click="vm.removeTask(task.task_id)">
-			<i class="fa fa-trash-o"></i>
-		</div>
+	<li ng-show="vm.currentTasks" class="tasks-li" ng-repeat="task in vm.tasks | orderBy:'-task_id' | filter:{status:0}">
+		<task-info class="task-info"></task-info>
+	</li>
+	<li ng-show="vm.completedTasks" class="tasks-li" ng-repeat="task in vm.tasks | orderBy:'-task_id' | filter:{status:1}">
+		<task-info class="task-info"></task-info>
+	</li>
+	<li ng-show="vm.allTasks" class="tasks-li" ng-repeat="task in vm.tasks | orderBy:'-task_id'">
+		<task-info class="task-info"></task-info>
 	</li>
 </ul>

@@ -28,4 +28,24 @@
             Controller: 'CtCtrl'
         };
     });
+
+    app.directive('taskInfo', function() {
+        return {
+            restrict: 'E',
+            replace: false,
+            templateUrl: 'main/current-tasks/task-info.html',
+            ControllerAs: 'ct',
+            Controller: 'CtCtrl'
+        };
+    });
+
+    app.directive('sideBar', function() {
+        return {
+            restrict: 'E',
+            replace: false,
+            templateUrl: 'main/side-bar/side-bar.html',
+            ControllerAs: 'ct',
+            Controller: 'CtCtrl'
+        };
+    });
 })();

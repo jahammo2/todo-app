@@ -14,12 +14,19 @@
 	p {
 		font-size: 22px;
 		margin-top: 4px;
-		margin-left: 10px;   
-	}
-	div,
-	i {
+		margin-left: 10px;
 		&:hover {
-			color: black;
+			cursor: pointer; 
+		}   
+	}
+	i.fa-plus {
+		&:hover {
+			color: white;
+			cursor: pointer; 
+		}
+	}
+	div {
+		&:hover {
 			cursor: pointer; 
 		}
 	}
@@ -32,10 +39,6 @@
 .tasks-li {
 	width: 90%;
 	background: $lightest-gray; 
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	flex-wrap: wrap;
 	margin: 13px 0 24px;
 	padding: 18px 5%;
 	font-size: 24px;
@@ -50,7 +53,7 @@
 			cursor: pointer;
 		}
 	}
-	div {
+	.trash-div {
 		&:hover {
 			cursor: pointer;
 			color: $darkest-gray; 
@@ -64,6 +67,13 @@
 			cursor: pointer;
 		}
 	}
+}
+
+.task-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .list-div {
@@ -110,6 +120,87 @@
 		border: 2px solid $darkest-gray;
 	}
 }
+
+/////////////////////////////////////////////////////////////
+// SIDE BAR
+/////////////////////////////////////////////////////////////
+
+// .side-bar {
+// 	position: absolute;
+
+// }
+
+.side-bar-div {
+	height: 100%;
+	position: absolute;
+	background: $darkest-blue; 
+	z-index: 1000; 
+	transition: all .3s;
+	visibility: hidden;
+	width: 1px; 
+	color: white; 
+	p {
+		opacity: 0; 
+	}
+	.fa-arrow-circle-o-left {
+		opacity: 0; 
+	}
+}
+
+.wrapper {
+	padding: 0;
+	transition: all .3s;
+}
+
+.home-checkbox {
+	visibility: hidden;
+	position: absolute;
+	&:checked ~ .side-bar .side-bar-div {
+		visibility: visible;
+		width: 75%;
+		transition: width .3s;
+	}
+	&:checked ~ .side-bar p {
+		opacity: 1;
+		transition: opacity .01s ease-in .19s;
+	}
+	&:checked ~ .side-bar .fa-arrow-circle-o-left {
+		opacity: 1;
+		transition: opacity .01s ease-in .19s;
+	}
+	&:checked ~ .wrapper {
+		padding-left: 75%; 
+		transition: all .3s;
+	}
+}
+
+.filters-div {
+	margin: 44px auto 0;
+	width: 80%;
+	p {
+		margin: 15px 0 24px;
+		font-size: 24px;
+		&:hover {
+			cursor: pointer;
+			text-decoration: underline;
+		} 
+	}
+}
+
+i.fa-arrow-circle-o-left {
+	margin-top: 15px; 
+	margin-left: 85%; 
+	font-size: 30px;
+	right: 15%;
+	top: 15px;
+	cursor: pointer;
+}
+
+
+
+
+
+
 
 
 

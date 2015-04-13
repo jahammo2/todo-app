@@ -26,14 +26,12 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-html, body {
+html, body, .root-content, .wrapper {
   width: 100%;
   height: 100%;
   font-family: 'Montserrat', helvetica; }
 
 .root-content {
-  height: 100%;
-  width: 100%;
   margin: 0 auto; }
 
 .flex {
@@ -55,17 +53,17 @@ html, body {
     font-size: 22px;
     margin-top: 4px;
     margin-left: 10px; }
-  .header-div div:hover, .header-div i:hover {
-    color: black;
+    .header-div p:hover {
+      cursor: pointer; }
+  .header-div i.fa-plus:hover {
+    color: white;
+    cursor: pointer; }
+  .header-div div:hover {
     cursor: pointer; }
 
 .tasks-li {
   width: 90%;
   background: #f2f2f2;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
   margin: 13px 0 24px;
   padding: 18px 5%;
   font-size: 24px;
@@ -78,13 +76,19 @@ html, body {
     overflow: scroll; }
     .tasks-li h1:hover {
       cursor: pointer; }
-  .tasks-li div:hover {
+  .tasks-li .trash-div:hover {
     cursor: pointer;
     color: #d0d0d4; }
   .tasks-li:hover {
     cursor: pointer; }
   .tasks-li label:hover {
     cursor: pointer; }
+
+.task-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap; }
 
 .list-div {
   margin: 0 auto;
@@ -117,3 +121,56 @@ html, body {
   .new-input:focus {
     padding: 15px 4.5%;
     border: 2px solid #d0d0d4; }
+
+.side-bar-div {
+  height: 100%;
+  position: absolute;
+  background: #233c61;
+  z-index: 1000;
+  transition: all .3s;
+  visibility: hidden;
+  width: 1px;
+  color: white; }
+  .side-bar-div p {
+    opacity: 0; }
+  .side-bar-div .fa-arrow-circle-o-left {
+    opacity: 0; }
+
+.wrapper {
+  padding: 0;
+  transition: all .3s; }
+
+.home-checkbox {
+  visibility: hidden;
+  position: absolute; }
+  .home-checkbox:checked ~ .side-bar .side-bar-div {
+    visibility: visible;
+    width: 75%;
+    transition: width .3s; }
+  .home-checkbox:checked ~ .side-bar p {
+    opacity: 1;
+    transition: opacity .01s ease-in .19s; }
+  .home-checkbox:checked ~ .side-bar .fa-arrow-circle-o-left {
+    opacity: 1;
+    transition: opacity .01s ease-in .19s; }
+  .home-checkbox:checked ~ .wrapper {
+    padding-left: 75%;
+    transition: all .3s; }
+
+.filters-div {
+  margin: 44px auto 0;
+  width: 80%; }
+  .filters-div p {
+    margin: 15px 0 24px;
+    font-size: 24px; }
+    .filters-div p:hover {
+      cursor: pointer;
+      text-decoration: underline; }
+
+i.fa-arrow-circle-o-left {
+  margin-top: 15px;
+  margin-left: 85%;
+  font-size: 30px;
+  right: 15%;
+  top: 15px;
+  cursor: pointer; }
