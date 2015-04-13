@@ -23,7 +23,7 @@ function controlDatabase(req,res,query) {
     
     pool.getConnection(function(err,connection){
         if (err) {
-          connection.release();
+          connection && connection.release();
           res.json({"code" : 100, "status" : "Error in connection database"});
           return;
         }   
