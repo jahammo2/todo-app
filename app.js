@@ -23,7 +23,7 @@ app.use('/dist', express.static(__dirname + '/dist'));
 
 var task = {};
 
-function controlDatabase(req,res,query) {
+function controlDatabase(req,res,query,placeholders) {
     
     pool.getConnection(function(err,connection){
         if (err) {
@@ -35,14 +35,14 @@ function controlDatabase(req,res,query) {
 
         console.log('connected as id ' + connection.threadId);
 
-        connection.query(query,function(err,rows){
+        connection.query(query,placeholders,function(err,rows){
             connection.release();
             if(!err) {
             		console.log(rows);
                 res.json(rows);
             }           
         });
-        
+
   });
 };
 
@@ -51,19 +51,19 @@ app.get('/api/tasks', function(req,res){
 });
 
 app.get('/api/tasks/:id', function(req,res){
-    controlDatabase(req,res,"SELECT * FROM tasks WHERE task_id='" + req.params.id + "'");
+    controlDatabase(req,res,"SELECT * FROM tasks WHERE task_id= ?",[req.params.id]);
 });
 
 app.post('/api/tasks',function(req,res){
-  controlDatabase(req,res,"INSERT INTO tasks (title, status) VALUES ('" + req.body.title + "', 0)");
+  controlDatabase(req,res,"INSERT INTO tasks (title, status) VALUES (?, 0)",[req.body.title]);
 });
 
 app.post('/api/tasks/:id/:status',function(req,res){
-    controlDatabase(req,res,"UPDATE tasks SET status='" + req.params.status + "' WHERE task_id='" + req.params.id + "'");
+    controlDatabase(req,res,"UPDATE tasks SET status= ? WHERE task_id= ?",[req.params.status, req.params.id]);
 });
 
 app.delete('/api/tasks/:id',function(req,res){
-    controlDatabase(req,res,"DELETE FROM tasks WHERE task_id='" + req.params.id + "'");
+    controlDatabase(req,res,"DELETE FROM tasks WHERE task_id= ?",[req.params.id]);
 });
 
 var server = app.listen(process.env.PORT || 7000, function () {
