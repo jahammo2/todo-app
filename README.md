@@ -10,6 +10,9 @@
 - HTML
 - CSS
 
+#### See the app live at
+https://todo-app2.herokuapp.com/
+
 ### How I'm going through making this todo app using JavaScript, Node, and MySQL
 
 ##### initially in command line
